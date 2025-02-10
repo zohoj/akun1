@@ -1,0 +1,22 @@
+name: gogo
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run_bot:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+
+      - name: Run PHP Script
+        env:
+          keydecode: ${{ secrets.KKUNCI }}
+        run: php botv.php | tail -n 400
